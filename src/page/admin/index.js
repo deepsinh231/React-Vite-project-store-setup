@@ -1,4 +1,4 @@
 import Default from "./default";
-import Page from "./Page";
+import DemoForm from "./Page";
 
-export { Default, Page };
+export { Default, DemoForm };
