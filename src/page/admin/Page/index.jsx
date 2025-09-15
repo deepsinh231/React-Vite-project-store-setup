@@ -1,8 +1,9 @@
-import { useState } from "react";
+"use client";
+
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import InputGloble from "@/components/input/InputGloble";
+import InputField from "@/components/input/InputField";
 import { Button } from "@/components/ui/button";
 import { useNotificationContext } from "../../../createContextStore/NotificationContext";
 
@@ -16,7 +17,10 @@ const FormSchema = z
     date: z.string().min(1, "Select a date"),
     startDate: z.string().min(1, "Start date required"),
     endDate: z.string().min(1, "End date required"),
-    photo: z.any().refine((file) => !!file, "Upload a photo"),
+    framework: z.string().min(1, "Framework required"),
+    photo: z
+      .any()
+      .refine((file) => file instanceof File, "Upload a valid photo"),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords do not match",
@@ -24,8 +28,8 @@ const FormSchema = z
   });
 
 export default function RHFCustomForm() {
-  const [fileName, setFileName] = useState("");
   const { openNotification } = useNotificationContext();
+
   const {
     handleSubmit,
     control,
@@ -33,14 +37,14 @@ export default function RHFCustomForm() {
   } = useForm({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      name: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-      date: "",
-      startDate: "",
-      endDate: "",
-      file: null,
+      name: "Hellos",
+      email: "deep@gmail.com",
+      password: "aa@AA123",
+      confirmPassword: "aa@AA123",
+      date: "01/01/2023",
+      startDate: "01/01/2024",
+      endDate: "01/01/2025",
+      framework: "remix",
       photo: null,
     },
   });
@@ -67,18 +71,13 @@ export default function RHFCustomForm() {
           name="name"
           control={control}
           render={({ field }) => (
-            <div>
-              <InputGloble
-                {...field}
-                placeholder="Enter your name"
-                state={errors.name ? "error" : field.value ? "success" : ""}
-              />
-              {errors.name && (
-                <p className="text-sm text-red-500 mt-1">
-                  {errors.name.message}
-                </p>
-              )}
-            </div>
+            <InputField
+              {...field}
+              label="Name"
+              placeholder="Enter your name"
+              state={errors.name ? "error" : field.value ? "success" : ""}
+              stateError={errors.name?.message}
+            />
           )}
         />
 
@@ -87,20 +86,14 @@ export default function RHFCustomForm() {
           name="email"
           control={control}
           render={({ field }) => (
-            <div>
-              <InputGloble
-                {...field}
-                type="email"
-                label="Email"
-                placeholder="Enter your email"
-                state={errors.email ? "error" : field.value ? "success" : ""}
-              />
-              {errors.email && (
-                <p className="text-sm text-red-500 mt-1">
-                  {errors.email.message}
-                </p>
-              )}
-            </div>
+            <InputField
+              {...field}
+              type="email"
+              label="Email"
+              placeholder="Enter your email"
+              state={errors.email ? "error" : field.value ? "success" : ""}
+              stateError={errors.email?.message}
+            />
           )}
         />
 
@@ -109,15 +102,14 @@ export default function RHFCustomForm() {
           name="password"
           control={control}
           render={({ field }) => (
-            <div>
-              <InputGloble
-                {...field}
-                type="password"
-                placeholder="Enter password"
-                state={errors.password ? "error" : field.value ? "success" : ""}
-                stateError={errors.password?.message}
-              />
-            </div>
+            <InputField
+              {...field}
+              type="password"
+              label="Password"
+              placeholder="Enter password"
+              state={errors.password ? "error" : field.value ? "success" : ""}
+              stateError={errors.password?.message}
+            />
           )}
         />
 
@@ -126,123 +118,57 @@ export default function RHFCustomForm() {
           name="confirmPassword"
           control={control}
           render={({ field }) => (
-            <div>
-              <InputGloble
-                {...field}
-                type="password"
-                placeholder="Confirm password"
-                state={
-                  errors.confirmPassword
-                    ? "error"
-                    : field.value
-                    ? "success"
-                    : ""
-                }
-                stateError={errors.confirmPassword?.message}
-              />
-            </div>
-          )}
-        />
-        <Controller
-          name="date"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <InputGloble
-                {...field} // includes value, onChange
-                type="select"
-                options={[
-                  { value: "next.js", label: "Next.js Deepsinh" },
-                  { value: "sveltekit", label: "SvelteKit" },
-                  { value: "nuxt.js", label: "Nuxt.js" },
-                  { value: "remix", label: "Remix" },
-                  { value: "astro", label: "Astro" },
-                ]}
-                state={errors.date ? "error" : field.value ? "success" : ""}
-              />
-              {errors.date && (
-                <p className="text-sm text-red-500 mt-1">
-                  {errors.date.message}
-                </p>
-              )}
-            </div>
+            <InputField
+              {...field}
+              type="password"
+              label="Confirm Password"
+              placeholder="Confirm password"
+              state={
+                errors.confirmPassword ? "error" : field.value ? "success" : ""
+              }
+              stateError={errors.confirmPassword?.message}
+            />
           )}
         />
 
-        {/* Single Date */}
+        {/* Framework (Select) */}
         <Controller
-          name="date"
+          name="framework"
           control={control}
           render={({ field }) => (
-            <div>
-              <InputGloble
-                {...field}
-                type="select"
-                options={[
-                  { value: "next.js", label: "Next.js" },
-                  { value: "sveltekit", label: "SvelteKit" },
-                  { value: "nuxt.js", label: "Nuxt.js" },
-                  { value: "remix", label: "Remix" },
-                  { value: "astro", label: "Astro" },
-                ]}
-                state={errors.date ? "error" : field.value ? "success" : ""}
-              />
-              {errors.date && (
-                <p className="text-sm text-red-500 mt-1">
-                  {errors.date.message}
-                </p>
-              )}
-            </div>
-          )}
-        />
-        <Controller
-          name="Framework"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <InputGloble
-                {...field}
-                options={[
-                  { value: "next.js", label: "Next.js" },
-                  { value: "sveltekit", label: "SvelteKit" },
-                  { value: "nuxt.js", label: "Nuxt.js" },
-                  { value: "remix", label: "Remix" },
-                  { value: "astro", label: "Astro" },
-                ]}
-                type="select"
-                label="Framework"
-                state={errors.date ? "error" : field.value ? "success" : ""}
-              />
-              {errors.date && (
-                <p className="text-sm text-red-500 mt-1">
-                  {errors.date.message}
-                </p>
-              )}
-            </div>
+            <InputField
+              {...field}
+              type="select"
+              label="Framework"
+              options={[
+                { value: "next.js", label: "Next.js" },
+                { value: "sveltekit", label: "SvelteKit" },
+                { value: "nuxt.js", label: "Nuxt.js" },
+                { value: "remix", label: "Remix" },
+                { value: "astro", label: "Astro" },
+              ]}
+              state={errors.framework ? "error" : field.value ? "success" : ""}
+              stateError={errors.framework?.message}
+            />
           )}
         />
 
-        {/* Date Range */}
+        {/* Dates */}
         <div className="grid grid-cols-2 gap-4">
           <Controller
             name="startDate"
             control={control}
             render={({ field }) => (
-              <div>
-                <InputGloble
-                  {...field}
-                  type="date"
-                  placeholder="Start Date"
-                  state={
-                    errors.startDate ? "error" : field.value ? "success" : ""
-                  }
-                />
-                {errors.startDate && (
-                  <p className="text-sm text-red-500 mt-1">
-                    {errors.startDate.message}
-                  </p>
-                )}
-              </div>
+              <InputField
+                {...field}
+                type="date"
+                label="Start Date"
+                placeholder="Select start date"
+                state={
+                  errors.startDate ? "error" : field.value ? "success" : ""
+                }
+                stateError={errors.startDate?.message}
+              />
             )}
           />
 
@@ -250,46 +176,50 @@ export default function RHFCustomForm() {
             name="endDate"
             control={control}
             render={({ field }) => (
-              <div>
-                <InputGloble
-                  {...field}
-                  type="file"
-                  placeholder="End Date"
-                  state={
-                    errors.endDate ? "error" : field.value ? "success" : ""
-                  }
-                />
-                {errors.endDate && (
-                  <p className="text-sm text-red-500 mt-1">
-                    {errors.endDate.message}
-                  </p>
-                )}
-              </div>
+              <InputField
+                {...field}
+                type="date"
+                label="End Date"
+                placeholder="Select end date"
+                state={errors.endDate ? "error" : field.value ? "success" : ""}
+                stateError={errors.endDate?.message}
+              />
             )}
           />
         </div>
 
-        {/* Upload Photo */}
+        {/* Single Date */}
+        <Controller
+          name="date"
+          control={control}
+          render={({ field }) => (
+            <InputField
+              {...field}
+              type="date"
+              label="Event Date"
+              placeholder="Pick a date"
+              state={errors.date ? "error" : field.value ? "success" : ""}
+              stateError={errors.date?.message}
+            />
+          )}
+        />
+
+        {/* Photo Upload */}
         <Controller
           name="photo"
           control={control}
-          render={({ field }) => (
+          render={({ field: { onChange, ...rest } }) => (
             <div>
-              <input
+              <InputField
+                {...rest}
                 type="file"
-                accept="image/*"
+                label="Upload Photo"
                 onChange={(e) => {
-                  const file = e.target.files?.[0];
-                  field.onChange(file);
-                  setFileName(file?.name || "");
+                  onChange(e.target.value);
+                  console.log("e", e);
                 }}
-                className="block w-full text-sm text-gray-500 file:mr-4 file:rounded-full file:border-0 file:bg-blue-600 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white hover:file:bg-blue-700 dark:file:bg-blue-500 dark:hover:file:bg-blue-600"
+                state={errors.photo ? "error" : rest.value ? "success" : ""}
               />
-              {fileName && (
-                <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
-                  Selected: {fileName}
-                </p>
-              )}
               {errors.photo && (
                 <p className="text-sm text-red-500 mt-1">
                   {errors.photo.message}

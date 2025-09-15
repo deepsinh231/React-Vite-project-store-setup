@@ -15,7 +15,7 @@ import AdminLayout from "./layouts/AdminLayout";
 import { Outlet } from "react-router-dom";
 import AuthLayout from "./layouts/auth";
 import DefaultPage from "./page/admin/default";
-import { DemoForm } from "./page/admin";
+import { DemoForm, AnalyticsPage } from "./page/admin";
 
 // Simple placeholder components for nested pages
 const Demo1Page = () => <div className="p-6">Demo1 Page</div>;
@@ -29,15 +29,6 @@ const ReportsPage = () => (
       <p className="text-gray-600">
         View and analyze your business reports here.
       </p>
-    </div>
-  </div>
-);
-
-const AnalyticsPage = () => (
-  <div className="p-6">
-    <h1 className="text-2xl font-bold mb-4">Analytics</h1>
-    <div className="bg-white p-4 rounded-lg shadow">
-      <p className="text-gray-600">Advanced analytics and insights.</p>
     </div>
   </div>
 );
