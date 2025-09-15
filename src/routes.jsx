@@ -2,6 +2,7 @@ import { MdOutlineDashboard } from "react-icons/md";
 import AdminLayout from "./layouts/AdminLayout";
 import DefaultPage from "./page/admin/default";
 import { DemoForm } from "./page/admin";
+import Signin from "./page/auth/Signin";
 
 const routes = [
   {
@@ -22,6 +23,13 @@ const routes = [
         path: "reports",
         icon: "",
         element: <DemoForm />,
+        show: ["all"],
+      },
+      {
+        name: "Login",
+        path: "login",
+        icon: "",
+        element: <Signin />,
         show: ["all"],
       },
       {
