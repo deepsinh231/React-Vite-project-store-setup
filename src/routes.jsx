@@ -1,6 +1,4 @@
-import { MdOutlineDashboard } from "react-icons/md";
 import AdminLayout from "./layouts/AdminLayout";
-import DefaultPage from "./page/admin/default";
 import { DemoForm } from "./page/admin";
 
 const routes = [
@@ -14,7 +12,7 @@ const routes = [
         index: true,
         name: "Dashboard",
         icon: "",
-        element: <DefaultPage />,
+        element: "Dashboard",
         show: ["all"],
       },
       {
