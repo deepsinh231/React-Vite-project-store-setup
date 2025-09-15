@@ -15,7 +15,19 @@ import AdminLayout from "./layouts/AdminLayout";
 import { Outlet } from "react-router-dom";
 import AuthLayout from "./layouts/auth";
 import DefaultPage from "./page/admin/default";
-import { DemoForm, AnalyticsPage } from "./page/admin";
+import Page from "./layouts/auth/login/page";
+import  DataTableDemo  from "./page/admin/Page/adminFile";
+import {
+  FaGlobe,
+  FaListAlt,
+  FaUserCog,
+  FaMoneyBillWave,
+  FaCalendarCheck,
+  FaIdBadge,
+  FaExchangeAlt
+} from "react-icons/fa"
+import { MdMenuBook } from "react-icons/md"
+import { AiOutlineTable } from "react-icons/ai"
 
 // Simple placeholder components for nested pages
 const Demo1Page = () => <div className="p-6">Demo1 Page</div>;
@@ -121,20 +133,20 @@ const routes = [
         element: <DefaultPage />,
         show: ["all"],
       },
-      {
-        name: "Reports",
-        path: "reports",
-        icon: FaChartBar,
-        element: <DemoForm />,
-        show: ["all"],
-      },
-      {
-        name: "Analytics",
-        path: "analytics",
-        icon: FaChartBar,
-        element: <AnalyticsPage />,
-        show: ["all"],
-      },
+      // {
+      //   name: "Reports",
+      //   path: "reports",
+      //   icon: FaChartBar,
+      //   element: <DemoForm />,
+      //   show: ["all"],
+      // },
+      // {
+      //   name: "Analytics",
+      //   path: "analytics",
+      //   icon: FaChartBar,
+      //   element: <AnalyticsPage />,
+      //   show: ["all"],
+      // },
       {
         name: "Settings",
         path: "settings",
@@ -197,7 +209,97 @@ const routes = [
               },
             ],
           },
+
+          
         ],
+      },
+
+        {
+        name: "Admin",
+        path: "admin",
+        icon: FaCogs,
+        // element: <SettingsPage />,
+        show: ["all"],
+      children: [
+  {
+    name: "Website Menu",
+    path: "website-menu",
+    icon: FaGlobe,
+    element: <DataTableDemo />,
+    show: ["all", "user"],
+  },
+  {
+    name: "MenuGroup List",
+    path: "menu-group-list",
+    icon: FaListAlt,
+    element: <DataTableDemo />,
+    show: ["all", "user"],
+  },
+  {
+    name: "MenuGroup",
+    path: "menu-group",
+    icon: MdMenuBook,
+    element: <DataTableDemo />,
+    show: ["all", "user"],
+  },
+  {
+    name: "User Menu Mapping",
+    path: "user-menu-mapping",
+    icon: FaUsers,
+    element: <DataTableDemo />,
+    show: ["all", "user"],
+  },
+  {
+    name: "Add User",
+    path: "add-user",
+    icon: FaUserPlus,
+    element: <DataTableDemo />,
+    show: ["all", "user"],
+  },
+  {
+    name: "User List",
+    path: "user-list",
+    icon: AiOutlineTable,
+    element: <DataTableDemo />,
+    show: ["all", "user"],
+  },
+  {
+    name: "Add Auto Salary Day",
+    path: "add-auto-salary-day",
+    icon: FaMoneyBillWave,
+    element: <DataTableDemo />,
+    show: ["all", "user"],
+  },
+  {
+    name: "Auto Salary Day List",
+    path: "auto-salary-day-list",
+    icon: FaCalendarCheck,
+    element: <DataTableDemo />,
+    show: ["all", "user"],
+  },
+  {
+    name: "Active deactive EmpCode",
+    path: "active-deactive-empcode",
+    icon: FaIdBadge,
+    element: <DataTableDemo />,
+    show: ["all", "user"],
+  },
+  {
+    name: "Update IMEI EAS",
+    path: "update-imei-eas",
+    icon: FaMobileAlt,
+    element: <DataTableDemo />,
+    show: ["all", "user"],
+  },
+  {
+    name: "Change Emp Attendence",
+    path: "change-emp-attendence",
+    icon: FaExchangeAlt,
+    element: <DataTableDemo />,
+    show: ["all", "user"],
+  },
+]
+
       },
     ],
   },
@@ -212,7 +314,7 @@ const routes = [
         name: "Login",
         path: "login",
         icon: FaKey,
-        element: <LoginPage />,
+        element: <Page />,
         show: ["all"],
       },
       {
