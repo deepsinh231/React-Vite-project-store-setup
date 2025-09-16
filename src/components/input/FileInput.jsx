@@ -1,10 +1,26 @@
 "use client";
 
-import React, { forwardRef, useRef, useImperativeHandle, useState } from "react";
+import React, {
+  forwardRef,
+  useRef,
+  useImperativeHandle,
+  useState,
+} from "react";
 import { Button } from "@/components/ui/button";
 
 const FileInput = forwardRef(
-  ({ id, name, onChange, disabled, placeholder = "Choose file...", ...props }, ref) => {
+  (
+    {
+      id,
+      className,
+      name,
+      onChange,
+      disabled,
+      placeholder = "Choose file...",
+      ...props
+    },
+    ref
+  ) => {
     const hiddenInputRef = useRef(null);
     const [fileName, setFileName] = useState("");
 
@@ -40,7 +56,7 @@ const FileInput = forwardRef(
           variant="outline"
           disabled={disabled}
           onClick={handleClick}
-          className="flex h-12 w-full items-center justify-center rounded-[6px] border bg-white/0 p-2 text-sm"
+          className={`${className} flex h-12 w-full items-center justify-center rounded-[6px] border bg-white/0 p-2 text-sm`}
         >
           {fileName || placeholder}
         </Button>

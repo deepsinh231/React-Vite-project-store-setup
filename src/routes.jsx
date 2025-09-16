@@ -16,34 +16,19 @@ import { Outlet } from "react-router-dom";
 import AuthLayout from "./layouts/auth";
 import DefaultPage from "./page/admin/default";
 import Page from "./layouts/auth/login/page";
-import  DataTableDemo  from "./page/admin/Page/adminFile";
+import DataTableDemo from "./page/admin/Page/adminFile";
 import {
   FaGlobe,
   FaListAlt,
-  FaUserCog,
   FaMoneyBillWave,
   FaCalendarCheck,
   FaIdBadge,
-  FaExchangeAlt
-} from "react-icons/fa"
-import { MdMenuBook } from "react-icons/md"
-import { AiOutlineTable } from "react-icons/ai"
+  FaExchangeAlt,
+} from "react-icons/fa";
+import { MdMenuBook } from "react-icons/md";
+import { AiOutlineTable } from "react-icons/ai";
+import AdminLayoutPage from "./layouts/AdminLayoutPage.jsx";
 
-// Simple placeholder components for nested pages
-const Demo1Page = () => <div className="p-6">Demo1 Page</div>;
-const Users1Page = () => <div className="p-6">Users1 Page</div>;
-const Users2Page = () => <div className="p-6">Users2 Page</div>;
-
-const ReportsPage = () => (
-  <div className="p-6">
-    <h1 className="text-2xl font-bold mb-4">Reports</h1>
-    <div className="bg-white p-4 rounded-lg shadow">
-      <p className="text-gray-600">
-        View and analyze your business reports here.
-      </p>
-    </div>
-  </div>
-);
 
 const SettingsPage = () => (
   <div className="p-6">
@@ -61,61 +46,6 @@ const ProfilePage = () => (
     <div className="bg-white p-4 rounded-lg shadow">
       <p className="text-gray-600">Update your profile information.</p>
     </div>
-  </div>
-);
-
-const SecurityPage = () => (
-  <div className="p-6">
-    <h1 className="text-2xl font-bold mb-4">Security Settings</h1>
-    <div className="bg-white p-4 rounded-lg shadow">
-      <p className="text-gray-600">Manage your security preferences.</p>
-    </div>
-    <Outlet />
-  </div>
-);
-
-const LoginPage = () => (
-  <div className="min-h-screen flex items-center justify-center bg-gray-50">
-    <div className="max-w-md w-full space-y-8">
-      <h2 className="text-center text-3xl font-bold text-gray-900">Login</h2>
-      <div className="bg-white p-8 rounded-lg shadow">
-        <p className="text-gray-600">Login form would go here.</p>
-      </div>
-    </div>
-  </div>
-);
-
-const OtpPage = () => (
-  <div className="min-h-screen flex items-center justify-center bg-gray-50">
-    <div className="max-w-md w-full space-y-8">
-      <h2 className="text-center text-3xl font-bold text-gray-900">
-        Enter OTP
-      </h2>
-      <div className="bg-white p-8 rounded-lg shadow">
-        <p className="text-gray-600">OTP verification form would go here.</p>
-      </div>
-    </div>
-  </div>
-);
-
-const SignupPage = () => (
-  <div className="min-h-screen flex items-center justify-center bg-gray-50">
-    <div className="max-w-md w-full space-y-8">
-      <h2 className="text-center text-3xl font-bold text-gray-900">Sign Up</h2>
-      <div className="bg-white p-8 rounded-lg shadow">
-        <p className="text-gray-600">Registration form would go here.</p>
-      </div>
-    </div>
-  </div>
-);
-
-const UsersPage = () => (
-  <div className="p-6">
-    <h1 className="text-2xl font-bold mb-4">User Management</h1>
-    <div className="bg-white p-4 rounded-lg shadow">
-      <p className="text-gray-600">Manage database users here.</p>
-    </div>
-    <Outlet />
   </div>
 );
 
@@ -161,98 +91,94 @@ const routes = [
             element: <ProfilePage />,
             show: ["all", "user"],
           },
-      
-
-          
         ],
       },
 
-        {
+      {
         name: "Admin",
         path: "admin",
         icon: FaCogs,
-        // element: <SettingsPage />,
+        element: <AdminLayoutPage />,
         show: ["all"],
-      children: [
-  {
-    name: "Website Menu",
-    path: "website-menu",
-    icon: FaGlobe,
-    element: <DataTableDemo />,
-    show: ["all", "user"],
-  },
-  {
-    name: "MenuGroup List",
-    path: "menu-group-list",
-    icon: FaListAlt,
-    element: <DataTableDemo />,
-    show: ["all", "user"],
-  },
-  {
-    name: "MenuGroup",
-    path: "menu-group",
-    icon: MdMenuBook,
-    element: <DataTableDemo />,
-    show: ["all", "user"],
-  },
-  {
-    name: "User Menu Mapping",
-    path: "user-menu-mapping",
-    icon: FaUsers,
-    element: <DataTableDemo />,
-    show: ["all", "user"],
-  },
-  {
-    name: "Add User",
-    path: "add-user",
-    icon: FaUserPlus,
-    element: <DataTableDemo />,
-    show: ["all", "user"],
-  },
-  {
-    name: "User List",
-    path: "user-list",
-    icon: AiOutlineTable,
-    element: <DataTableDemo />,
-    show: ["all", "user"],
-  },
-  {
-    name: "Add Auto Salary Day",
-    path: "add-auto-salary-day",
-    icon: FaMoneyBillWave,
-    element: <DataTableDemo />,
-    show: ["all", "user"],
-  },
-  {
-    name: "Auto Salary Day List",
-    path: "auto-salary-day-list",
-    icon: FaCalendarCheck,
-    element: <DataTableDemo />,
-    show: ["all", "user"],
-  },
-  {
-    name: "Active deactive EmpCode",
-    path: "active-deactive-empcode",
-    icon: FaIdBadge,
-    element: <DataTableDemo />,
-    show: ["all", "user"],
-  },
-  {
-    name: "Update IMEI EAS",
-    path: "update-imei-eas",
-    icon: FaMobileAlt,
-    element: <DataTableDemo />,
-    show: ["all", "user"],
-  },
-  {
-    name: "Change Emp Attendence",
-    path: "change-emp-attendence",
-    icon: FaExchangeAlt,
-    element: <DataTableDemo />,
-    show: ["all", "user"],
-  },
-]
-
+        children: [
+          {
+            name: "Website Menu",
+            path: "website-menu",
+            icon: FaGlobe,
+            element: <DataTableDemo />,
+            show: ["all", "user"],
+          },
+          {
+            name: "MenuGroup List",
+            path: "menu-group-list",
+            icon: FaListAlt,
+            element: <DataTableDemo />,
+            show: ["all", "user"],
+          },
+          {
+            name: "MenuGroup",
+            path: "menu-group",
+            icon: MdMenuBook,
+            element: <DataTableDemo />,
+            show: ["all", "user"],
+          },
+          {
+            name: "User Menu Mapping",
+            path: "user-menu-mapping",
+            icon: FaUsers,
+            element: <DataTableDemo />,
+            show: ["all", "user"],
+          },
+          {
+            name: "Add User",
+            path: "add-user",
+            icon: FaUserPlus,
+            element: <DataTableDemo />,
+            show: ["all", "user"],
+          },
+          {
+            name: "User List",
+            path: "user-list",
+            icon: AiOutlineTable,
+            element: <DataTableDemo />,
+            show: ["all", "user"],
+          },
+          {
+            name: "Add Auto Salary Day",
+            path: "add-auto-salary-day",
+            icon: FaMoneyBillWave,
+            element: <DataTableDemo />,
+            show: ["all", "user"],
+          },
+          {
+            name: "Auto Salary Day List",
+            path: "auto-salary-day-list",
+            icon: FaCalendarCheck,
+            element: <DataTableDemo />,
+            show: ["all", "user"],
+          },
+          {
+            name: "Active deactive EmpCode",
+            path: "active-deactive-empcode",
+            icon: FaIdBadge,
+            element: <DataTableDemo />,
+            show: ["all", "user"],
+          },
+          {
+            name: "Update IMEI EAS",
+            path: "update-imei-eas",
+            icon: FaMobileAlt,
+            element: <DataTableDemo />,
+            show: ["all", "user"],
+          },
+          {
+            name: "Change Emp Attendence",
+            path: "change-emp-attendence",
+            icon: FaExchangeAlt,
+            element: <DataTableDemo />,
+            show: ["all", "user"],
+          },
+        ],
       },
     ],
   },
@@ -269,21 +195,7 @@ const routes = [
         icon: FaKey,
         element: <Page />,
         show: ["all"],
-      },
-      {
-        name: "OTP",
-        path: "otp",
-        icon: FaMobileAlt,
-        element: <OtpPage />,
-        show: ["all"],
-      },
-      {
-        name: "Signup",
-        path: "signup",
-        icon: FaUserPlus,
-        element: <SignupPage />,
-        show: ["all"],
-      },
+      }
     ],
   },
   {

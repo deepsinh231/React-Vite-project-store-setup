@@ -15,6 +15,7 @@ const TextInput = forwardRef(
       disabled,
       state,
       type = "text",
+      className,
       ...props
     },
     ref
@@ -32,7 +33,7 @@ const TextInput = forwardRef(
             : state === "success"
             ? "border-black text-black placeholder:text-black"
             : "border-gray-200 dark:!border-white/10 dark:text-white"
-        }`}
+        } ${className || ""}`}
         placeholder={placeholder}
         type={type}
         disabled={disabled}

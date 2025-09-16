@@ -314,6 +314,8 @@ const InputField = forwardRef(
       defaultValue,
       onChange,
       accept,
+      className,
+      mt = "mt-2",
     },
     ref
   ) => {
@@ -357,8 +359,8 @@ const InputField = forwardRef(
         </div>
 
         {/* Field */}
-        <div className="relative mt-2">
-          {(type === "text" || type === "email") && (
+        <div className={`relative ${mt}`}>
+          {(type === "text" || type === "email" || type === "search") && (
             <TextInput
               ref={visibleRef}
               id={id}
@@ -366,6 +368,7 @@ const InputField = forwardRef(
               value={value}
               defaultValue={defaultValue}
               placeholder={placeholder}
+              className={className}
               state={state}
               disabled={disabled}
               onChange={onChange}
@@ -381,6 +384,7 @@ const InputField = forwardRef(
               defaultValue={defaultValue}
               placeholder={placeholder}
               state={state}
+              className={className}
               disabled={disabled}
               onChange={onChange}
             />
@@ -399,6 +403,7 @@ const InputField = forwardRef(
               label={label}
               disabled={disabled}
               name={inputName}
+              className={className}
             />
           )}
 
@@ -411,6 +416,7 @@ const InputField = forwardRef(
                 onChange?.({ target: { name: inputName, value: val } });
               }}
               placeholder={placeholder}
+              className={className}
               disabled={disabled}
               name={inputName}
             />
@@ -421,6 +427,7 @@ const InputField = forwardRef(
               ref={visibleRef}
               id={id}
               name={inputName}
+              className={className}
               accept={accept}
               disabled={disabled}
               onChange={onChange}

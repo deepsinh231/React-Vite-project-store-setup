@@ -4,12 +4,11 @@ export default function AuthLayout() {
   return (
     <div>
       <header>
-        <h1>Auth Layout Header</h1>
+        <h1 className="text-center text-2xl font-extrabold">
+          Riddhi Corporate Services Limited
+        </h1>
       </header>
       <Outlet />
-      <footer>
-        <p>Auth Layout Footer</p>
-      </footer>
     </div>
   );
 }

@@ -166,7 +166,7 @@ const AdminLayout = () => {
       <Layout theme="light" style={{ minHeight: "100vh" }}>
         <Sider theme="light" trigger={null} collapsed={collapsed}>
           <div className="demo-logo-vertical border p-4 text-center font-bold">
-            {collapsed ? "A" : "Admin Panel"}
+            {collapsed ? "RCSL" : "Riddhi Corporate Services Limited"}
           </div>
           <Menu
             theme="light"
@@ -205,7 +205,7 @@ const AdminLayout = () => {
           </Content>
         </Layout>
       </Layout>
-      <SettingsDrawer />{" "}
+      {/* <SettingsDrawer />{" "} */}
     </>
   );
 };

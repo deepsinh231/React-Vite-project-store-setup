@@ -1,0 +1,130 @@
+/* tooltip.css - basic, customizable styles */
+
+.tooltip-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  outline: none;
+  cursor: default; /* or pointer */
+}
+
+/* Container for the tooltip text */
+.tooltip-box {
+  position: absolute;
+  z-index: 9999;
+  pointer-events: none; /* allow mouse to pass through tooltip */
+  opacity: 0;
+  transform-origin: center;
+  white-space: nowrap;
+  background: rgba(20, 24, 32, 0.95);
+  color: #fff;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 13px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.25);
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-duration: 180ms;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* arrow */
+.tooltip-box .tooltip-arrow {
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  background: inherit;
+  transform: rotate(45deg);
+  box-shadow: inherit;
+}
+
+/* Visible / hidden states (fade + slide) */
+.tooltip-show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Placement adjustments */
+/* Top: place tooltip above the element */
+.tooltip-top {
+  bottom: 100%;
+  left: 50%;
+  transform: translate(-50%, -8px) scale(0.98);
+}
+.tooltip-top.tooltip-show {
+  transform: translate(-50%, -12px) scale(1);
+}
+.tooltip-top .tooltip-arrow {
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+/* Bottom: place tooltip below the element */
+.tooltip-bottom {
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 8px) scale(0.98);
+}
+.tooltip-bottom.tooltip-show {
+  transform: translate(-50%, 12px) scale(1);
+}
+.tooltip-bottom .tooltip-arrow {
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+/* Left */
+.tooltip-left {
+  right: 100%;
+  top: 50%;
+  transform: translate(-8px, -50%) scale(0.98);
+}
+.tooltip-left.tooltip-show {
+  transform: translate(-12px, -50%) scale(1);
+}
+.tooltip-left .tooltip-arrow {
+  right: -4px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+/* Right */
+.tooltip-right {
+  left: 100%;
+  top: 50%;
+  transform: translate(8px, -50%) scale(0.98);
+}
+.tooltip-right.tooltip-show {
+  transform: translate(12px, -50%) scale(1);
+}
+.tooltip-right .tooltip-arrow {
+  left: -4px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+/* Small visual tweaks for long content - wrap */
+.tooltip-content {
+  display: inline-block;
+  max-width: 260px;
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+
+/* Optional: nicer focus style on wrapper (keyboard) */
+.tooltip-wrapper:focus {
+  outline: none;
+}
+.tooltip-wrapper:focus .tooltip-box {
+  /* you could show tooltip on focus already via onFocus */
+}
+
+/* Responsive: make tooltip larger on big screens (optional) */
+@media (min-width: 1024px) {
+  .tooltip-box {
+    font-size: 14px;
+  }
+}
