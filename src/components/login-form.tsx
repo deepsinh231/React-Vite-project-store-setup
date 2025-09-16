@@ -59,7 +59,40 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
 
     return (
         <div className={cn("flex flex-col gap-6", className)} {...props}>
-            <Card>
+          
+            {isLoggedIn ? (
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Select Company / Customer</CardTitle>
+                        <CardDescription>
+                            Choose a company from the list below
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <Select onValueChange={(val) => setSelectedCompany(val)}>
+                            <SelectTrigger className="w-full">
+                                <SelectValue placeholder="Select a company" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                {companies.map((company, idx) => (
+                                    <SelectItem key={idx} value={company}>
+                                        {company}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+
+                        <Button onClick={handleCompanySubmit} className="w-full mt-6">
+                            Submit
+                        </Button>
+                        {selectedCompany && (
+                            <p className="mt-3 text-sm text-muted-foreground">
+                                Selected: <span className="font-medium">{selectedCompany}</span>
+                            </p>
+                        )}
+                    </CardContent>
+                </Card>
+            ):(  <Card>
                 <CardHeader>
                     <CardTitle>Login to your account</CardTitle>
                     <CardDescription>
@@ -126,40 +159,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
                     </form>
                 </CardContent>
             </Card>
-
-            {isLoggedIn && (
-                <Card>
-                    <CardHeader>
-                        <CardTitle>Select Company / Customer</CardTitle>
-                        <CardDescription>
-                            Choose a company from the list below
-                        </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                        <Select onValueChange={(val) => setSelectedCompany(val)}>
-                            <SelectTrigger className="w-full">
-                                <SelectValue placeholder="Select a company" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                {companies.map((company, idx) => (
-                                    <SelectItem key={idx} value={company}>
-                                        {company}
-                                    </SelectItem>
-                                ))}
-                            </SelectContent>
-                        </Select>
-
-                        <Button onClick={handleCompanySubmit} className="w-full mt-6">
-                            Submit
-                        </Button>
-                        {selectedCompany && (
-                            <p className="mt-3 text-sm text-muted-foreground">
-                                Selected: <span className="font-medium">{selectedCompany}</span>
-                            </p>
-                        )}
-                    </CardContent>
-                </Card>
-            )}
+)}
         </div>
     )
 }

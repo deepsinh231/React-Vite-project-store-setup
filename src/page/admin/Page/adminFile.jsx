@@ -1,16 +1,52 @@
 "use client"
 
 import React from "react"
-import {  Dropdown, Button } from "antd"
 import { MoreOutlined } from "@ant-design/icons"
 import TableComponents from "../../../components/TableComponent"
 
+import { Button, Dropdown } from "antd"
+
 const data = [
-  { id: "m5gr84i9", amount: 316, status: "success", email: "ken99@example.com" },
-  { id: "3u1reuv4", amount: 242, status: "success", email: "Abe45@example.com" },
-  { id: "derv1ws0", amount: 837, status: "processing", email: "Monserrat44@example.com" },
-  { id: "5kma53ae", amount: 874, status: "success", email: "Silas22@example.com" },
-  { id: "bhqecj4p", amount: 721, status: "failed", email: "carmella@example.com" },
+  {
+    id: "m5gr84i9",
+    amount: 316,
+    status: "success",
+    email: "ken99@example.com",
+    date: "2023-09-01",
+    customer: "John Doe",
+  },
+  {
+    id: "3u1reuv4",
+    amount: 242,
+    status: "success",
+    email: "Abe45@example.com",
+    date: "2023-09-02",
+    customer: "Alice Johnson",
+  },
+  {
+    id: "derv1ws0",
+    amount: 837,
+    status: "processing",
+    email: "Monserrat44@example.com",
+    date: "2023-09-03",
+    customer: "Michael Brown",
+  },
+  {
+    id: "5kma53ae",
+    amount: 874,
+    status: "success",
+    email: "Silas22@example.com",
+    date: "2023-09-04",
+    customer: "Sophia Lee",
+  },
+  {
+    id: "bhqecj4p",
+    amount: 721,
+    status: "failed",
+    email: "carmella@example.com",
+    date: "2023-09-05",
+    customer: "David Smith",
+  },
 ]
 
 const columns = [
@@ -26,6 +62,24 @@ const columns = [
     key: "email",
     sorter: (a, b) => a.email.localeCompare(b.email),
     render: (text) => <span className="lowercase">{text}</span>,
+  },
+  {
+    title: "Customer",
+    dataIndex: "customer",
+    key: "customer",
+    sorter: (a, b) => a.customer.localeCompare(b.customer),
+  },
+{
+    title: "Date",
+    dataIndex: "date",
+    key: "date",
+    sorter: (a, b) => new Date(a.date) - new Date(b.date),
+    render: (date) =>
+      new Intl.DateTimeFormat("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      }).format(new Date(date)),
   },
   {
     title: "Amount",
