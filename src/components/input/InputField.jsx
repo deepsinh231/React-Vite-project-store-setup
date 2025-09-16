@@ -313,6 +313,7 @@ const InputField = forwardRef(
       value,
       defaultValue,
       onChange,
+      accept,
     },
     ref
   ) => {
@@ -420,6 +421,7 @@ const InputField = forwardRef(
               ref={visibleRef}
               id={id}
               name={inputName}
+              accept={accept}
               disabled={disabled}
               onChange={onChange}
             />
