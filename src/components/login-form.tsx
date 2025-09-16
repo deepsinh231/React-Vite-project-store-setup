@@ -59,7 +59,6 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
 
     return (
         <div className={cn("flex flex-col gap-6", className)} {...props}>
-          
             {isLoggedIn ? (
                 <Card>
                     <CardHeader>
@@ -92,7 +91,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
                         )}
                     </CardContent>
                 </Card>
-            ):(  <Card>
+            ) : (<Card>
                 <CardHeader>
                     <CardTitle>Login to your account</CardTitle>
                     <CardDescription>
@@ -119,7 +118,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
                                             {...field}
                                             id="email"
                                             type="email"
-                                            placeholder="m@example.com"
+                                            placeholder="aaa@example.com"
                                         />
                                     )}
                                 />
@@ -159,7 +158,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
                     </form>
                 </CardContent>
             </Card>
-)}
+            )}
         </div>
     )
 }
