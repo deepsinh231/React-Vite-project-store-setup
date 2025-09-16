@@ -161,54 +161,7 @@ const routes = [
             element: <ProfilePage />,
             show: ["all", "user"],
           },
-          {
-            name: "Security",
-            path: "security",
-            icon: FaLock,
-            element: <SecurityPage />,
-            show: ["all"],
-            children: [
-              {
-                name: "Database",
-                path: "database",
-                icon: FaLock,
-                element: <SecurityPage />,
-                show: ["all"],
-                children: [
-                  {
-                    name: "Users",
-                    path: "users",
-                    icon: FaUsers,
-                    element: <UsersPage />,
-                    show: ["all"],
-                    children: [
-                      {
-                        name: "Demo1",
-                        path: "demo-1",
-                        icon: FaLock,
-                        element: <Demo1Page />,
-                        show: ["all"],
-                      },
-                    ],
-                  },
-                  {
-                    name: "Users1",
-                    path: "users1",
-                    icon: FaLock,
-                    element: <Users1Page />,
-                    show: ["all"],
-                  },
-                  {
-                    name: "Users2",
-                    path: "users2",
-                    icon: FaLock,
-                    element: <Users2Page />,
-                    show: ["all"],
-                  },
-                ],
-              },
-            ],
-          },
+      
 
           
         ],
