@@ -99,7 +99,7 @@ const AdminLayout = () => {
   };
 
   const menuItems = generateMenuItems(
-    routes.filter((route) => route.path !== "/auth")
+    routes.filter((route) => route.path !== "/auths")
   );
   const handleMenuClick = ({ key }) => {
     navigate(key);
